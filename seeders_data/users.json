@@ -1,0 +1,8 @@
+[
+    {
+        "name": "Admin Seeder",
+        "email": "adminseeder@riwi.com",
+        "password": "$2b$10$e7KqE1/oThwJylQxV.lM2eI2G.e80x6XGg6vB0t/q1P31sQdZ6S9i",
+        "role": "Administrador"
+    }
+]

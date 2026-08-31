@@ -1,0 +1,40 @@
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: riwimedicare_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: riwimedicare_db
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - riwi_network
+
+  api:
+    build: .
+    container_name: riwimedicare_api
+    restart: always
+    ports:
+      - "3001:3000"
+    environment:
+      PORT: 3000
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: riwimedicare_db
+    depends_on:
+      - db
+    networks:
+      - riwi_network
+
+volumes:
+  postgres_data:
+
+networks:
+  riwi_network:
+    driver: bridge

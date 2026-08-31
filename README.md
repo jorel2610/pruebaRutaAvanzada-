@@ -1,9 +1,9 @@
 # RiwiMedicare Backend API
 
 ## Submission Details
-* **Coder:** [Your Full Name Here]
-* **Clan:** [Your Clan Name Here]
-* **GitHub Repository:** [Your Public GitHub Repository URL Here]
+* **Coder:** [jorel]
+* **Clan:** [centurion]
+* **GitHub Repository:** [https://github.com/jorel2610/pruebaRutaAvanzada-.git]
 
 ---
 

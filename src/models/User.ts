@@ -7,11 +7,11 @@ export enum UserRole {
 }
 
 export class User extends Model {
-    public id!: number;
-    public name!: string;
-    public email!: string;
-    public password!: string;
-    public role!: UserRole;
+    declare id: number;
+    declare name: string;
+    declare email: string;
+    declare password: string;
+    declare role: string;
 }
 
 User.init(

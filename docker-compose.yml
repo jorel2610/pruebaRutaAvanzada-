@@ -27,6 +27,7 @@ services:
       DB_USER: postgres
       DB_PASSWORD: postgres
       DB_NAME: riwimedicare_db
+      JWT_SECRET: riwimedicare_super_secret_jwt_key_2026
     depends_on:
       - db
     networks:

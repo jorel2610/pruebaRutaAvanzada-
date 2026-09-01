@@ -1,30 +1,36 @@
-# RiwiMedicare Backend API
+cat << 'EOF' > README.md
+# RiwiMediCare Plus - Backend API
 
-## Submission Details
-* **Coder:** [jorel]
-* **Clan:** [centurion]
-* **GitHub Repository:** [https://github.com/jorel2610/pruebaRutaAvanzada-.git]
+RESTful API built for managing the lifecycle of medical supply requests for clinics and healthcare centers.
+
+## Coder Information
+* **Name:** Jorel
+* **Clan:** Riwi
+* **GitHub Repository:** https://github.com/jorel2610/pruebaRutaAvanzada-
 
 ---
 
 ## Tech Stack
-* **Language:** Node.js, TypeScript
-* **Framework:** Express.js
-* **Database & ORM:** PostgreSQL, Sequelize ORM
-* **Containerization:** Docker, Docker Compose
-* **Documentation:** Swagger (OpenAPI)
-* **Testing:** Jest
+* **Runtime & Language:** Node.js (v18+) & TypeScript
+* **Web Framework:** Express.js
+* **ORM & Database:** Sequelize ORM & PostgreSQL
+* **Authentication & Security:** JSON Web Token (JWT) & Bcrypt
+* **File Uploads / Seeders:** Multer (JSON bulk upload)
+* **API Documentation:** Swagger UI & OpenAPI 3.0
+* **Automated Testing:** Jest & Supertest
+* **Containerization & Orchestration:** Docker & Docker Compose
 
 ---
 
-## Environment Variables Example (`.env`)
-Create a `.env` file in the root directory based on `.env.example`:
+## Environment Variables (.env.example)
+
+Create a `.env` file in the root directory based on the following configuration:
 
 ```env
-PORT=3000
+PORT=3001
 DB_HOST=db
 DB_PORT=5432
 DB_USER=postgres
 DB_PASSWORD=postgres
 DB_NAME=riwimedicare_db
-JWT_SECRET=super_secret_key
+JWT_SECRET=riwi_medicare_secret_key_2026

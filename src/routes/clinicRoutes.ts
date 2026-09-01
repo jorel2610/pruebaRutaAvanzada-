@@ -1,16 +1,35 @@
 import { Router } from 'express';
-import { createClinic, getClinics, updateClinic, deleteClinic } from '../controllers/clinicController';
-import { authenticateToken, authorizeRoles } from '../middlewares/authMiddleware';
-import { validateUniqueNit } from '../middlewares/validationMiddleware';
-import { UserRole } from '../models/User';
+import { getClinics, createClinic } from '../controllers/clinicController';
+import { authenticateToken } from '../middlewares/authMiddleware';
 
 const router = Router();
 
-router.use(authenticateToken);
+/**
+ * @swagger
+ * /api/clinics:
+ *   get:
+ *     summary: Obtener todas las clínicas
+ *     tags: [Clinics]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Lista de clínicas
+ */
+router.get('/', authenticateToken, getClinics);
 
-router.get('/', getClinics);
-router.post('/', authorizeRoles(UserRole.ADMIN), validateUniqueNit, createClinic);
-router.put('/:id', authorizeRoles(UserRole.ADMIN), updateClinic);
-router.delete('/:id', authorizeRoles(UserRole.ADMIN), deleteClinic);
+/**
+ * @swagger
+ * /api/clinics:
+ *   post:
+ *     summary: Crear una nueva clínica
+ *     tags: [Clinics]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       201:
+ *         description: Clínica creada
+ */
+router.post('/', authenticateToken, createClinic);
 
 export default router;

@@ -1,15 +1,35 @@
 import { Router } from 'express';
-import { createMedicine, getMedicines, updateMedicine, deleteMedicine } from '../controllers/medicineController';
-import { authenticateToken, authorizeRoles } from '../middlewares/authMiddleware';
-import { UserRole } from '../models/User';
+import { getMedicines, createMedicine } from '../controllers/medicineController';
+import { authenticateToken } from '../middlewares/authMiddleware';
 
 const router = Router();
 
-router.use(authenticateToken);
+/**
+ * @swagger
+ * /api/medicines:
+ *   get:
+ *     summary: Obtener listado de medicamentos
+ *     tags: [Medicines]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Lista de medicamentos
+ */
+router.get('/', authenticateToken, getMedicines);
 
-router.get('/', getMedicines);
-router.post('/', authorizeRoles(UserRole.ADMIN), createMedicine);
-router.put('/:id', authorizeRoles(UserRole.ADMIN), updateMedicine);
-router.delete('/:id', authorizeRoles(UserRole.ADMIN), deleteMedicine);
+/**
+ * @swagger
+ * /api/medicines:
+ *   post:
+ *     summary: Registrar un nuevo medicamento
+ *     tags: [Medicines]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       201:
+ *         description: Medicamento creado
+ */
+router.post('/', authenticateToken, createMedicine);
 
 export default router;

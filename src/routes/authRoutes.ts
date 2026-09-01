@@ -4,12 +4,11 @@ import { register, login } from '../controllers/authController';
 const router = Router();
 
 /**
- * @openapi
+ * @swagger
  * /api/auth/register:
  *   post:
  *     summary: Registrar un nuevo usuario (Sin restricción JWT)
- *     tags:
- *       - Autenticación
+ *     tags: [Autenticación]
  *     requestBody:
  *       required: true
  *       content:
@@ -30,20 +29,21 @@ const router = Router();
  *                 type: string
  *               role:
  *                 type: string
- *                 enum: [Administrador, Gestor de Solicitudes]
+ *                 enum: [ADMIN, CLINIC_MANAGER, WAREHOUSE_MANAGER]
  *     responses:
  *       201:
  *         description: Usuario registrado exitosamente
+ *       400:
+ *         description: Datos inválidos o correo ya existente
  */
 router.post('/register', register);
 
 /**
- * @openapi
+ * @swagger
  * /api/auth/login:
  *   post:
  *     summary: Iniciar sesión
- *     tags:
- *       - Autenticación
+ *     tags: [Autenticación]
  *     requestBody:
  *       required: true
  *       content:
@@ -60,7 +60,9 @@ router.post('/register', register);
  *                 type: string
  *     responses:
  *       200:
- *         description: Token JWT retornado exitosamente
+ *         description: Autenticación exitosa (retorna JWT)
+ *       401:
+ *         description: Credenciales inválidas
  */
 router.post('/login', login);
 

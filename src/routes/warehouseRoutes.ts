@@ -1,15 +1,35 @@
 import { Router } from 'express';
-import { createWarehouse, getWarehouses, updateWarehouse, deleteWarehouse } from '../controllers/warehouseController';
-import { authenticateToken, authorizeRoles } from '../middlewares/authMiddleware';
-import { UserRole } from '../models/User';
+import { getWarehouses, createWarehouse } from '../controllers/warehouseController';
+import { authenticateToken } from '../middlewares/authMiddleware';
 
 const router = Router();
 
-router.use(authenticateToken);
+/**
+ * @swagger
+ * /api/warehouses:
+ *   get:
+ *     summary: Obtener todos los almacenes
+ *     tags: [Warehouses]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Lista de almacenes
+ */
+router.get('/', authenticateToken, getWarehouses);
 
-router.get('/', getWarehouses);
-router.post('/', authorizeRoles(UserRole.ADMIN), createWarehouse);
-router.put('/:id', authorizeRoles(UserRole.ADMIN), updateWarehouse);
-router.delete('/:id', authorizeRoles(UserRole.ADMIN), deleteWarehouse);
+/**
+ * @swagger
+ * /api/warehouses:
+ *   post:
+ *     summary: Crear un almacén
+ *     tags: [Warehouses]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       201:
+ *         description: Almacén creado
+ */
+router.post('/', authenticateToken, createWarehouse);
 
 export default router;
